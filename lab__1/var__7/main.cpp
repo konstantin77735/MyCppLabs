@@ -24,7 +24,7 @@ int main() {
 
     std::string sortProperty;
     bool ascending;
-    std::cout << "\n¬ведите свойство дл€ сортировки (name, arrival, departure): ";
+    std::cout << "\n¬ведите свойство дл€ сортировки (им€ (name), дата прихода (arrival), дата ухода(departure)): ";
     std::cin >> sortProperty;
     std::cout << "—ортировать по возрастанию? (1 - да, 0 - нет): ";
     std::cin >> ascending;
