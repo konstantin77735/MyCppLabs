@@ -1,38 +1,42 @@
 #include "WorkTimeDetails.h"
+#include <windows.h>
 #include <iostream>
 #include <vector>
 #include <algorithm>
 
 int main() {
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+
     std::vector<WorkTimeDetails> records;
 
     int n;
-    std::cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р·Р°РїРёСЃРµР№: ";
+    std::cout << "Введите количество записей: ";
     std::cin >> n;
-    std::cin.ignore(); // РћС‡РёСЃС‚РєР° Р±СѓС„РµСЂР° РІРІРѕРґР°
+    std::cin.ignore(); // Очистка буфера ввода
 
-    // Р’РІРѕРґ РґР°РЅРЅС‹С…
+    // Ввод данных
     for (int i = 0; i < n; ++i) {
-        std::cout << "\nР—Р°РїРёСЃСЊ #" << i + 1 << ":\n";
+        std::cout << "\nЗапись #" << i + 1 << ":\n";
         WorkTimeDetails record;
         record.input();
         records.push_back(record);
     }
 
-    // РЎРѕСЂС‚РёСЂРѕРІРєР° РґР°РЅРЅС‹С…
-    std::cout << "\nРЎРѕСЂС‚РёСЂРѕРІРєР° Р·Р°РїРёСЃРµР№ РїРѕ РёРјРµРЅРё...\n";
+    // Сортировка данных
+    std::cout << "\nСортировка записей по имени...\n";
     std::sort(records.begin(), records.end());
 
-    // Р’С‹РІРѕРґ РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹С… РґР°РЅРЅС‹С…
-    std::cout << "РћС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Рµ Р·Р°РїРёСЃРё:\n";
+    // Вывод отсортированных данных
+    std::cout << "Отсортированные записи:\n";
     for (const auto& record : records) {
         record.print();
     }
 
-    // РџРѕРёСЃРє Р·Р°РїРёСЃРё
+    // Поиск записи
     std::cin.ignore();
     std::string searchName;
-    std::cout << "\nР’РІРµРґРёС‚Рµ РёРјСЏ РґР»СЏ РїРѕРёСЃРєР°: ";
+    std::cout << "\nВведите имя для поиска: ";
     std::getline(std::cin, searchName);
 
     auto it = std::find_if(records.begin(), records.end(), [&](const WorkTimeDetails& record) {
@@ -40,10 +44,10 @@ int main() {
     });
 
     if (it != records.end()) {
-        std::cout << "РќР°Р№РґРµРЅРЅР°СЏ Р·Р°РїРёСЃСЊ:\n";
+        std::cout << "Найденная запись:\n";
         it->print();
     } else {
-        std::cout << "Р—Р°РїРёСЃСЊ РЅРµ РЅР°Р№РґРµРЅР°.\n";
+        std::cout << "Запись не найдена.\n";
     }
 
     return 0;

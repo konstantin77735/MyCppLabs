@@ -1,20 +1,21 @@
 #include "WorkTimeTable.h"
+#include <windows.h>
 #include <iostream>
-#include <cstring> // Р”Р»СЏ С„СѓРЅРєС†РёРё strcmp РІ qsort
-#include <algorithm> // Р”Р»СЏ std::sort
+#include <cstring> // Для функции strcmp в qsort
+#include <algorithm> // Для std::sort
 
-// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ
+// Конструктор без параметров
 WorkTimeTable::WorkTimeTable() : employeeName(""), arrivalDate(""), departureDate("") {}
 
-// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёР№
+// Конструктор копий
 WorkTimeTable::WorkTimeTable(const WorkTimeTable& other)
     : employeeName(other.employeeName), arrivalDate(other.arrivalDate), departureDate(other.departureDate) {}
 
-// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё
+// Конструктор с параметрами
 WorkTimeTable::WorkTimeTable(const std::string& name, const std::string& arrival, const std::string& departure)
     : employeeName(name), arrivalDate(arrival), departureDate(departure) {}
 
-// РћРїРµСЂР°С‚РѕСЂ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ
+// Оператор присваивания
 WorkTimeTable& WorkTimeTable::operator=(const WorkTimeTable& other) {
     if (this != &other) {
         employeeName = other.employeeName;
@@ -24,50 +25,50 @@ WorkTimeTable& WorkTimeTable::operator=(const WorkTimeTable& other) {
     return *this;
 }
 
-// РћРїРµСЂР°С‚РѕСЂ СЃСЂР°РІРЅРµРЅРёСЏ
+// Оператор сравнения
 bool WorkTimeTable::operator==(const WorkTimeTable& other) const {
     return employeeName == other.employeeName && arrivalDate == other.arrivalDate && departureDate == other.departureDate;
 }
 
-// РћРїРµСЂР°С‚РѕСЂ "РјРµРЅСЊС€Рµ"
+// Оператор "меньше"
 bool WorkTimeTable::operator<(const WorkTimeTable& other) const {
-    return employeeName < other.employeeName; // РЎРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РёРјРµРЅРё
+    return employeeName < other.employeeName; // Сортировка по имени
 }
 
-// РњРµС‚РѕРґС‹ РґРѕСЃС‚СѓРїР°
+// Методы доступа
 std::string WorkTimeTable::getName() const { return employeeName; }
 std::string WorkTimeTable::getArrivalDate() const { return arrivalDate; }
 std::string WorkTimeTable::getDepartureDate() const { return departureDate; }
 
-// РњРµС‚РѕРґ РІРІРѕРґР°
+// Метод ввода
 void WorkTimeTable::input() {
-    std::cout << "Р’РІРµРґРёС‚Рµ Р¤.Р.Рћ. СЃРѕС‚СЂСѓРґРЅРёРєР°: ";
+    std::cout << "Введите Ф.И.О. сотрудника: ";
     std::getline(std::cin, employeeName);
-    std::cout << "Р’РІРµРґРёС‚Рµ РґР°С‚Сѓ РїСЂРёС…РѕРґР° (YYYY-MM-DD): ";
+    std::cout << "Введите дату прихода (YYYY-MM-DD): ";
     std::getline(std::cin, arrivalDate);
-    std::cout << "Р’РІРµРґРёС‚Рµ РґР°С‚Сѓ СѓС…РѕРґР° (YYYY-MM-DD): ";
+    std::cout << "Введите дату ухода (YYYY-MM-DD): ";
     std::getline(std::cin, departureDate);
 }
 
-// РњРµС‚РѕРґ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ
+// Метод редактирования
 void WorkTimeTable::edit() {
-    std::cout << "Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РґР°РЅРЅС‹С… СЃРѕС‚СЂСѓРґРЅРёРєР°:\n";
+    std::cout << "Редактирование данных сотрудника:\n";
     input();
 }
 
-// РњРµС‚РѕРґ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РґР°РЅРЅС‹С…
+// Метод для отображения данных
 void WorkTimeTable::print() const {
-    std::cout << "Р¤.Р.Рћ.: " << employeeName << ", РџСЂРёС…РѕРґ: " << arrivalDate << ", РЈС…РѕРґ: " << departureDate << std::endl;
+    std::cout << "Ф.И.О.: " << employeeName << ", Приход: " << arrivalDate << ", Уход: " << departureDate << std::endl;
 }
 
-// РЎС‚Р°С‚РёС‡РµСЃРєР°СЏ С„СѓРЅРєС†РёСЏ-РєРѕРјРїР°СЂР°С‚РѕСЂ РґР»СЏ qsort
+// Статическая функция-компаратор для qsort
 int WorkTimeTable::compare(const void* a, const void* b) {
     const WorkTimeTable* objA = static_cast<const WorkTimeTable*>(a);
     const WorkTimeTable* objB = static_cast<const WorkTimeTable*>(b);
     return objA->employeeName.compare(objB->employeeName);
 }
 
-// РЎС‚Р°С‚РёС‡РµСЃРєРёР№ РјРµС‚РѕРґ СЃРѕСЂС‚РёСЂРѕРІРєРё СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј qsort
+// Статический метод сортировки с использованием qsort
 void WorkTimeTable::sort(std::vector<WorkTimeTable>& tables) {
     qsort(&tables[0], tables.size(), sizeof(WorkTimeTable), compare);
 }

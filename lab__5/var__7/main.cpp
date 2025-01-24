@@ -1,36 +1,41 @@
 #include "WorkTimeTable.h"
+#include <windows.h>
 #include <iostream>
 #include <vector>
+#include <algorithm> // Для std::find_if
 
 int main() {
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
+
     std::vector<WorkTimeTable> tables;
 
     int n;
-    std::cout << "Р’РІРµРґРёС‚Рµ РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ: ";
+    std::cout << "Введите количество сотрудников: ";
     std::cin >> n;
     std::cin.ignore();
 
-    // Р’РІРѕРґ РґР°РЅРЅС‹С…
+    // Ввод данных
     for (int i = 0; i < n; ++i) {
-        std::cout << "РЎРѕС‚СЂСѓРґРЅРёРє #" << i + 1 << ":\n";
+        std::cout << "Сотрудник #" << i + 1 << ":\n";
         WorkTimeTable table;
         table.input();
         tables.push_back(table);
     }
 
-    // РЎРѕСЂС‚РёСЂРѕРІРєР°
-    std::cout << "\nРЎРѕСЂС‚РёСЂРѕРІРєР° СЃРїРёСЃРєР° СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ...\n";
+    // Сортировка
+    std::cout << "\nСортировка списка сотрудников...\n";
     WorkTimeTable::sort(tables);
 
-    std::cout << "РћС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅС‹Р№ СЃРїРёСЃРѕРє:\n";
+    std::cout << "Отсортированный список:\n";
     for (const auto& table : tables) {
         table.print();
     }
 
-    // РџРѕРёСЃРє СЃРѕС‚СЂСѓРґРЅРёРєР°
+    // Поиск сотрудника
     std::cin.ignore();
     std::string searchName;
-    std::cout << "\nР’РІРµРґРёС‚Рµ РёРјСЏ РґР»СЏ РїРѕРёСЃРєР°: ";
+    std::cout << "\nВведите имя для поиска: ";
     std::getline(std::cin, searchName);
 
     auto it = std::find_if(tables.begin(), tables.end(), [&](const WorkTimeTable& t) {
@@ -38,10 +43,10 @@ int main() {
     });
 
     if (it != tables.end()) {
-        std::cout << "РќР°Р№РґРµРЅРЅС‹Р№ СЃРѕС‚СЂСѓРґРЅРёРє:\n";
+        std::cout << "Найденный сотрудник:\n";
         it->print();
     } else {
-        std::cout << "РЎРѕС‚СЂСѓРґРЅРёРє РЅРµ РЅР°Р№РґРµРЅ.\n";
+        std::cout << "Сотрудник не найден.\n";
     }
 
     return 0;

@@ -11,32 +11,32 @@ private:
     std::string departureDate;
 
 public:
-    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
-    WorkTimeTable(); // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ
-    WorkTimeTable(const WorkTimeTable& other); // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёР№
-    WorkTimeTable(const std::string& name, const std::string& arrival, const std::string& departure); // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё
+    // Конструкторы
+    WorkTimeTable(); // Конструктор без параметров
+    WorkTimeTable(const WorkTimeTable& other); // Конструктор копий
+    WorkTimeTable(const std::string& name, const std::string& arrival, const std::string& departure); // Конструктор с параметрами
 
-    // РћРїРµСЂР°С†РёРё
-    WorkTimeTable& operator=(const WorkTimeTable& other); // РћРїРµСЂР°С‚РѕСЂ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ
-    bool operator==(const WorkTimeTable& other) const; // РћРїРµСЂР°С‚РѕСЂ СЃСЂР°РІРЅРµРЅРёСЏ
-    bool operator<(const WorkTimeTable& other) const;  // РћРїРµСЂР°С‚РѕСЂ "РјРµРЅСЊС€Рµ"
+    // Операции
+    WorkTimeTable& operator=(const WorkTimeTable& other); // Оператор присваивания
+    bool operator==(const WorkTimeTable& other) const; // Оператор сравнения
+    bool operator<(const WorkTimeTable& other) const;  // Оператор "меньше"
 
-    // РњРµС‚РѕРґС‹ РґРѕСЃС‚СѓРїР°
+    // Методы доступа
     std::string getName() const;
     std::string getArrivalDate() const;
     std::string getDepartureDate() const;
 
-    // Р’РІРѕРґ, РІС‹РІРѕРґ Рё СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ
+    // Ввод, вывод и редактирование
     void input();
     void edit();
 
-    // РЎС‚Р°С‚РёС‡РµСЃРєРёР№ РјРµС‚РѕРґ СЃРѕСЂС‚РёСЂРѕРІРєРё СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј qsort
+    // Статический метод сортировки с использованием qsort
     static void sort(std::vector<WorkTimeTable>& tables);
 
-    // РњРµС‚РѕРґ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РґР°РЅРЅС‹С…
+    // Метод для отображения данных
     void print() const;
 
-    // РЎС‚Р°С‚РёС‡РµСЃРєР°СЏ С„СѓРЅРєС†РёСЏ-РєРѕРјРїР°СЂР°С‚РѕСЂ РґР»СЏ qsort
+    // Статическая функция-компаратор для qsort
     static int compare(const void* a, const void* b);
 };
 

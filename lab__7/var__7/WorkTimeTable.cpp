@@ -1,35 +1,35 @@
 #include "WorkTimeTable.h"
 #include <iostream>
 
-// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ
+// Конструктор без параметров
 WorkTimeTable::WorkTimeTable() : employeeName(""), arrivalTime(""), departureTime("") {}
 
-// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё
+// Конструктор с параметрами
 WorkTimeTable::WorkTimeTable(const std::string& name, const std::string& arrival, const std::string& departure)
     : employeeName(name), arrivalTime(arrival), departureTime(departure) {}
 
-// РњРµС‚РѕРґС‹ РґРѕСЃС‚СѓРїР°
+// Методы доступа
 std::string WorkTimeTable::getName() const { return employeeName; }
 std::string WorkTimeTable::getArrivalTime() const { return arrivalTime; }
 std::string WorkTimeTable::getDepartureTime() const { return departureTime; }
 
-// Р’РІРѕРґ РґР°РЅРЅС‹С…
+// Ввод данных
 void WorkTimeTable::input() {
-    std::cout << "Р’РІРµРґРёС‚Рµ Р¤.Р.Рћ. СЃРѕС‚СЂСѓРґРЅРёРєР°: ";
+    std::cout << "Введите Ф.И.О. сотрудника: ";
     std::getline(std::cin, employeeName);
-    std::cout << "Р’РІРµРґРёС‚Рµ РІСЂРµРјСЏ РїСЂРёС…РѕРґР° (HH:MM): ";
+    std::cout << "Введите время прихода (HH:MM): ";
     std::getline(std::cin, arrivalTime);
-    std::cout << "Р’РІРµРґРёС‚Рµ РІСЂРµРјСЏ СѓС…РѕРґР° (HH:MM): ";
+    std::cout << "Введите время ухода (HH:MM): ";
     std::getline(std::cin, departureTime);
 }
 
-// Р’С‹РІРѕРґ РґР°РЅРЅС‹С…
+// Вывод данных
 void WorkTimeTable::print() const {
-    std::cout << "Р¤.Р.Рћ.: " << employeeName << ", РџСЂРёС…РѕРґ: " << arrivalTime
-              << ", РЈС…РѕРґ: " << departureTime << std::endl;
+    std::cout << "Ф.И.О.: " << employeeName << ", Приход: " << arrivalTime
+              << ", Уход: " << departureTime << std::endl;
 }
 
-// РћРїРµСЂР°С‚РѕСЂ "РјРµРЅСЊС€Рµ" (РґР»СЏ СЃРѕСЂС‚РёСЂРѕРІРєРё РїРѕ РёРјРµРЅРё)
+// Оператор "меньше" (для сортировки по имени)
 bool WorkTimeTable::operator<(const WorkTimeTable& other) const {
     return employeeName < other.employeeName;
 }

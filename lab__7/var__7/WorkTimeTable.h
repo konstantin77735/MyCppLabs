@@ -5,29 +5,29 @@
 
 class WorkTimeTable {
 protected:
-    std::string employeeName;  // Р¤.Р.Рћ.
-    std::string arrivalTime;   // Р’СЂРµРјСЏ РїСЂРёС…РѕРґР°
-    std::string departureTime; // Р’СЂРµРјСЏ СѓС…РѕРґР°
+    std::string employeeName;  // Ф.И.О.
+    std::string arrivalTime;   // Время прихода
+    std::string departureTime; // Время ухода
 
 public:
-    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
-    WorkTimeTable(); // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ
+    // Конструкторы
+    WorkTimeTable(); // Конструктор без параметров
     WorkTimeTable(const std::string& name, const std::string& arrival, const std::string& departure);
 
-    // Р’РёСЂС‚СѓР°Р»СЊРЅС‹Р№ РґРµСЃС‚СЂСѓРєС‚РѕСЂ
+    // Виртуальный деструктор
     virtual ~WorkTimeTable() {}
 
-    // РњРµС‚РѕРґС‹ РґРѕСЃС‚СѓРїР°
+    // Методы доступа
     std::string getName() const;
     std::string getArrivalTime() const;
     std::string getDepartureTime() const;
 
-    // Р’РІРѕРґ Рё РІС‹РІРѕРґ РґР°РЅРЅС‹С…
+    // Ввод и вывод данных
     virtual void input();
     virtual void print() const;
 
-    // РћРїРµСЂР°С‚РѕСЂС‹
-    bool operator<(const WorkTimeTable& other) const; // РЎРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РёРјРµРЅРё
+    // Операторы
+    bool operator<(const WorkTimeTable& other) const; // Сортировка по имени
 };
 
 #endif

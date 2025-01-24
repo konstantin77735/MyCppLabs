@@ -1,29 +1,29 @@
 #include "WorkTimeDetails.h"
 #include <iostream>
 
-// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ Р±РµР· РїР°СЂР°РјРµС‚СЂРѕРІ
+// Конструктор без параметров
 WorkTimeDetails::WorkTimeDetails() : WorkTimeTable(), department(""), dayOfWeek("") {}
 
-// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ РїР°СЂР°РјРµС‚СЂР°РјРё
+// Конструктор с параметрами
 WorkTimeDetails::WorkTimeDetails(const std::string& name, const std::string& arrival, const std::string& departure,
                                  const std::string& dept, const std::string& day)
     : WorkTimeTable(name, arrival, departure), department(dept), dayOfWeek(day) {}
 
-// РњРµС‚РѕРґС‹ РґРѕСЃС‚СѓРїР°
+// Методы доступа
 std::string WorkTimeDetails::getDepartment() const { return department; }
 std::string WorkTimeDetails::getDayOfWeek() const { return dayOfWeek; }
 
-// РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РјРµС‚РѕРґР° РІРІРѕРґР°
+// Переопределение метода ввода
 void WorkTimeDetails::input() {
-    WorkTimeTable::input(); // Р’С‹Р·РѕРІ Р±Р°Р·РѕРІРѕРіРѕ РјРµС‚РѕРґР°
-    std::cout << "Р’РІРµРґРёС‚Рµ РїРѕРґСЂР°Р·РґРµР»РµРЅРёРµ: ";
+    WorkTimeTable::input(); // Вызов базового метода
+    std::cout << "Введите подразделение: ";
     std::getline(std::cin, department);
-    std::cout << "Р’РІРµРґРёС‚Рµ РґРµРЅСЊ РЅРµРґРµР»Рё: ";
+    std::cout << "Введите день недели: ";
     std::getline(std::cin, dayOfWeek);
 }
 
-// РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РјРµС‚РѕРґР° РІС‹РІРѕРґР°
+// Переопределение метода вывода
 void WorkTimeDetails::print() const {
-    WorkTimeTable::print(); // Р’С‹Р·РѕРІ Р±Р°Р·РѕРІРѕРіРѕ РјРµС‚РѕРґР°
-    std::cout << "РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ: " << department << ", Р”РµРЅСЊ РЅРµРґРµР»Рё: " << dayOfWeek << std::endl;
+    WorkTimeTable::print(); // Вызов базового метода
+    std::cout << "Подразделение: " << department << ", День недели: " << dayOfWeek << std::endl;
 }

@@ -6,20 +6,20 @@
 
 class WorkTimeDetails : public WorkTimeTable {
 private:
-    std::string department;  // РџРѕРґСЂР°Р·РґРµР»РµРЅРёРµ
-    std::string dayOfWeek;   // Р”РµРЅСЊ РЅРµРґРµР»Рё
+    std::string department;  // Подразделение
+    std::string dayOfWeek;   // День недели
 
 public:
-    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹
+    // Конструкторы
     WorkTimeDetails();
     WorkTimeDetails(const std::string& name, const std::string& arrival, const std::string& departure,
                     const std::string& dept, const std::string& day);
 
-    // РњРµС‚РѕРґС‹ РґРѕСЃС‚СѓРїР°
+    // Методы доступа
     std::string getDepartment() const;
     std::string getDayOfWeek() const;
 
-    // РџРµСЂРµРѕРїСЂРµРґРµР»РµРЅРёРµ РјРµС‚РѕРґРѕРІ
+    // Переопределение методов
     void input() override;
     void print() const override;
 };
